@@ -1,0 +1,14 @@
+<div class="container-notify" *ngIf="showNotify" [@fadeInOut]>
+  <div class="container-notify__body">
+    <h3 class="container-notify__body__title">{{title}}
+      <span (click)="removeNotify()"><i class="fas fa-times container-notify__close" ></i></span>
+    </h3>
+    <p class="container-notify__body_text">{{text}}</p>
+    <div class="container-notify__footer">
+      <div class="container-notify__footer__icon" [style.background]="iconColor">
+        <i class="fas container-notify__footer__icon_text" [ngClass]="iconText"></i>
+        <!--fa-exclamation-->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+<div class="container-fluid">
+
+    <div class="row profile" *ngIf="step>=2">
+      <div class="col text-right container-header__col-avatar">
+        <div class="d-flex flex-column">
+          <div class="p-2 text-center">
+            <img [src]="srcAvatar" alt="avatar" class="rounded-circle container-header__col-avatar__image">
+          </div>
+          <div class="align-self-center">
+            <span class="container-header__col-avatar__name">{{user.name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="col container-header__right text-right">
+        <span *ngIf="step===2" class="badge badge-light">ROOMS • {{rooms.length}}</span>
+        <span *ngIf="step===3" class="badge badge-light">USERS • {{clients.length}}</span>
+      </div>
+
+      <!-- <p style="line-height: 120px; padding-left:50px;">SCOPA</p> -->
+      <!-- <app-stepper class="stepper" [step]="step"></app-stepper> -->
+      <!-- <div *ngIf="step===2">
+          <p><i class="far fa-user-circle" style="font-size:2.8rem;"></i>{{username}}</p>
+      </div> -->
+    </div>
+
+
+  <div class="container-body">
+    <div class="container-body__row text-center" *ngIf="step === 1">
+      Select Your Avatar
+    </div>
+    <div class="row container-body__row1">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-6">
+        <!--STEP 2 - Rooms -->
+        <div *ngIf="step===2 && rooms.length > 0">
+          <div class="text-center"></div>
+          <div class="list-group container-body__row1__list">
+            <a *ngFor="let room of rooms" (click)="joinRoom(room)"
+               class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 container-body__row1__list__title">
+                  <b>{{room.name}}</b>
+                </h5>
+                <small>{{getTimeAgo(room.timestamp)}} • {{room.nclients}}/2</small>
+              </div>
+              <!--<small>Host: <b>{{room.user.name}}</b></small>-->
+              <img src="../assets/images/avatars/{{room.user.avatar}}.{{imageExtension}}" alt="Avatar Host"
+                   class="rounded-circle container-body__row1__list__avatar">
+              <b>{{room.user.name}}</b>
+            </a>
+          </div>
+        </div>
+        <div *ngIf="step===2 && rooms.length===0">
+          <div class="alert container-body_alert" role="alert">
+            No rooms available!
+          </div>
+        </div>
+
+        <!--STEP 1 - Name and Avatar -->
+        <div *ngIf="step===1">
+          <!-- Carousel Avatar -->
+          <app-carousel (avatarSelected)="setAvatar($event)"></app-carousel>
+        </div>
+
+        <!--STEP 3 - Join Room -->
+        <div *ngIf="step===3">
+          <div class="alert container-body_chat" role="chat" #scrollMe>
+          </div>
+          <div *ngIf="clients.length===0">
+            <div class="alert container-body_alert" role="alert">
+              Waiting for player..
+            </div>
+          </div>
+          <ul class="list-group list-group-flush container-body__list-player" *ngIf="clients.length > 0">
+            <li class="list-group-item" style="padding: 0;" *ngFor="let client of clients">
+              <div class="row" style="height: 50px;">
+                <div class="col-3" style="overflow: hidden;">
+                  <img src="../assets/images/avatars/{{client.avatar}}.{{imageExtension}}" alt="Avatar user"
+                       class="container-body__list-player__avatar">
+                </div>
+                <div class="col">
+                  <span style="line-height: 3;">{{client.name}}</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="col-md-3" style="padding-top:20px;">
+        <!--<button type="button" (click)="updateRooms()" class="btn btn-outline-light d-none d-md-block" *ngIf="step===2">-->
+        <!--<i class="fas fa-sync-alt"></i>-->
+        <!--</button>-->
+      </div>
+    </div>
+    <div class="row container-body__row2">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <form #formApp="ngForm" (ngSubmit)="formApp.valid && onSubmit(step, formApp)" novalidate autocomplete="off">
+          <div class="container-body__input" *ngIf="step!=3">
+            <input type="text" [(ngModel)]="username" #name="ngModel" name="username" placeholder="Name"
+                   aria-label="name" required pattern="[A-Za-z0-9]{3,}" *ngIf="step===1">
+            <input type="text" [(ngModel)]="roomName" #room="ngModel" name="room" placeholder="Create new room.."
+                   aria-label="room" required pattern="[A-Za-z0-9]{3,}"
+                   *ngIf="step===2">
+            <button type="submit"
+                    [ngClass]="{'container-body__input__button' : formApp.valid, 'container-body__input__button--hide' : formApp.invalid}">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
+    </div>
+  </div>
+
+
+  <!--<nav class="navbar fixed-bottom navbar-light justify-content-between" >-->
+  <!--<button type="button" (click)="startGame()" class="btn btn-outline-light" *ngIf="step===3 && clients.length===1" style="margin-bottom: 20px">-->
+  <!--<i class="fas fa-play"></i>-->
+  <!--</button>-->
+  <!--</nav>-->
+
+  <div class="fixed-bottom footer" *ngIf="step===3 && clients.length===1" (click)="startGame()">
+    <div class="row">
+      <div class="col text-center">
+        <div class="d-flex justify-content-between">
+          <div>
+            <div class="icon">
+
+            </div>
+          </div>
+          <div class="footer_text">
+            Start the Game!
+          </div>
+          <div class="icon">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<app-notify [type]="notifyType" [title]="notifyTitle" [text]="notifyText" [showNotify]="showNotify"
+            (eventCloseNotify)="closeNotify($event)"></app-notify>

@@ -1,0 +1,41 @@
+// colors
+$input-background: rgba(57, 63, 84, 0.8);
+$input-text-inactive: #7881A1;
+$input-text-active: #BFD2FF;
+
+.prova {
+  border-top: 1px solid $input-text-inactive;
+}
+
+/*
+* Container avatar
+ */
+.container-header {
+  //margin-top: 10px;
+  //border-bottom: 1px solid $input-text-inactive;
+}
+
+.container-header__col-avatar__image {
+  background-color: $input-background;
+  width: 75px;
+}
+
+.container-header__col-avatar__name {
+  text-transform: uppercase;
+  color: $input-text-inactive;
+}
+
+.container-body__row2__list {
+  //max-height: 500px;
+  //overflow: scroll;
+}
+
+.container-header__right {
+  margin-top: 10px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}

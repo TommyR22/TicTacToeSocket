@@ -1,0 +1,9 @@
+{
+  "major": "1",
+  "minor": "0",
+  "maintenance": "0",
+  "build": {
+    "dev": 0,
+    "prod": 0
+  }
+}

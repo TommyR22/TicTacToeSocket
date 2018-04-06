@@ -1,0 +1,25 @@
+// colors
+$input-background: rgba(57, 63, 84, 0.8);
+$input-text-inactive: #7881A1;
+$input-text-active: #BFD2FF;
+
+
+.header {
+  border-bottom: 1px solid $input-background;
+  -webkit-box-shadow: 0px 6px 13px -5px rgba(57,63,84,1);
+  -moz-box-shadow: 0px 6px 13px -5px rgba(57,63,84,1);
+  box-shadow: 0px 6px 13px -5px rgba(57,63,84,1);
+}
+
+.header_icon {
+  color: $input-text-inactive;
+  display: inline-flex; /* make element size relative to content */
+  align-items: center; /* vertical alignment of items */
+}
+
+.header_icon:hover {
+  color: $input-text-active;
+  cursor: pointer;
+}
+
+

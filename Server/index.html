@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      body{
+        text-align: center;
+      }
+      canvas{
+        display: block;
+        margin: 0px auto;
+        background: black;
+      }
+    </style>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+	<script>
+    // var socket = io();
+    var nameRoom = null;
+    var room_list = [];
+    var client_list = [];
+    var socket; // define a global variable called socket
+    // var socket = io.connect('http://localhost:8080');
+    socket = io.connect(); // send a connection request to the server
+
+    // this function is fired when we connect
+    function onSocketConnected () {
+      console.log("Connected to server");
+    }
+    // this function is fired when we connect
+    function onSocketDisconnected () {
+      // non ricevo nulla dal server poichè connessione già chiusa.
+    }
+
+    function newGame() {
+      nameRoom = document.getElementById("nameRoom").value;
+      socket.emit('new_room', { room: nameRoom });
+    }
+
+    function list() {
+      socket.emit('getRooms', { room: nameRoom });
+    }
+
+    function send() {
+      var msg = document.getElementById("input").value;
+      socket.emit('send', { room: nameRoom, msg: msg });
+    }
+
+    function join() {
+      nameRoom = document.getElementById("nameRoom").value;
+      console.log('Join in:', nameRoom);
+      socket.emit('join', { room: nameRoom });
+    }
+    function leave() {
+      nameRoom = document.getElementById("nameRoom").value;
+      console.log('Leave room:', nameRoom);
+      socket.emit('leave', { room: nameRoom });
+    }
+
+    function insertPlayer() {
+      var name = document.getElementById("player").value;
+      socket.emit('new.player', { room: nameRoom, player: name });
+    }
+
+    socket.on('sendToClient', function (data) {
+      console.log(data.msg);
+    });
+
+    socket.on('infoToClients', function (data) {
+      console.warn(data.msg);
+    });
+
+    socket.on('list.room', function (data) {
+      console.log('Updating list of rooms..');
+      room_list = data;
+      console.log(data);
+    });
+
+    //listen to the “connect” message from the server. The server
+    //automatically emit a “connect” message when the client connects.
+    socket.on("connect", onSocketConnected);
+    socket.on('disconnect', onSocketDisconnected);
+
+  </script>
+  <body>
+  Name: <input id="player" type="text" name="text"><button onclick="insertPlayer()">Insert</button>
+  <br>
+  Name Room: <input id="nameRoom" type="text" name="text">
+  <button onclick="newGame()">New Game</button>
+  <button onclick="join()">Join</button>
+  <button onclick="leave()">Leave</button>
+  <br>
+  <button onclick="list()">list</button>
+  <br>
+  Text: <input id="input" type="text" name="text">
+  <button onclick="send()">Send</button>
+  <!--<canvas width=700 height=400 id="game-canvas"></canvas>-->
+  </body>
+</html>

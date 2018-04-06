@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  font-family: 'Jua', sans-serif;
+}
+body {
+    // background: linear-gradient(to right, #373b52 0%, #252736 51%, #1d1e26 100%);
+    background-color: #252736;
+}
+p {
+    color: white;
+}
+.btn:focus {
+  outline: 0;
+  // Add replacement focus styling here (i.e. border)
+}
