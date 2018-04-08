@@ -31,6 +31,9 @@ export class GameComponent implements OnInit {
   turn_user2: string;
   turn_user: string;
 
+  nvictory_user: number;
+  nvictory_user2: number;
+
   seed: number;
 
   matrix = [];
@@ -41,6 +44,8 @@ export class GameComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.nvictory_user = 0;
+    this.nvictory_user2 = 0;
     try {
       this.socket = this.socketService.getSocket();
       this.nameRoom = this.socketService.getRoom();

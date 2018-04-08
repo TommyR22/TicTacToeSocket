@@ -3,6 +3,9 @@ $input-background: rgba(57, 63, 84, 0.8);
 $input-text-inactive: #7881A1;
 $input-text-active: #BFD2FF;
 
+$size-circle: 30px;
+$size-avatar: 75px;
+
 .prova {
   border-top: 1px solid $input-text-inactive;
 }
@@ -11,18 +14,30 @@ $input-text-active: #BFD2FF;
 * Container avatar
  */
 .container-header {
-  //margin-top: 10px;
+  margin-top: 10px;
   //border-bottom: 1px solid $input-text-inactive;
 }
 
-.container-header__col-avatar__image {
+.container-header__left__avatar__image {
   background-color: $input-background;
-  width: 75px;
+  width: $size-avatar;
 }
 
-.container-header__col-avatar__name {
+.container-header__left__avatar__text {
   text-transform: uppercase;
-  color: $input-text-inactive;
+  color: $input-text-active;
+  display: block;
+}
+
+.container-header__left__text {
+  padding-left: 20px;
+  font-size: xx-large;
+  color: $input-text-active;
+}
+.container-header__right__text {
+  padding-right: 20px;
+  font-size: xx-large;
+  color: $input-text-active;
 }
 
 .container-body__row2__list {
@@ -30,12 +45,28 @@ $input-text-active: #BFD2FF;
   //overflow: scroll;
 }
 
-.container-header__right {
-  margin-top: 10px;
-}
-
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
 }
+
+.container-header__center {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.container-header__center__circle {
+  background-color: $input-text-inactive;
+  width: $size-circle; 
+  height: $size-circle; 
+  margin: auto; 
+  border-radius: $size-circle;
+}
+
+.container-header__center__circle__text {
+  line-height: $size-circle;
+  font-size: smaller;
+}
+
+

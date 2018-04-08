@@ -1,5 +1,5 @@
 {
-  "name": "game-socket",
+  "name": "tic-tac-toe-socket",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {

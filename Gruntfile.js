@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
   var buildInfo = {
-    projectName: 'game-socket',
+    projectName: 'tic-tac-toe-socket',
     version: function () {
       var package = grunt.file.readJSON('package.json');
       return package.version;
