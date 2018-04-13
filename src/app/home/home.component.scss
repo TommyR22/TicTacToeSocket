@@ -5,6 +5,7 @@ $input-text-active: #BFD2FF;
 $heightLine: 2px;
 $heightInput: 60px;
 $margin-top-from-header: 10px;
+$orange: #ecaf4f;
 
 .container-fluid__navbar {
   background-color: #7881A1;
@@ -162,7 +163,7 @@ body {
 
 .container-body__row1__list__avatar {
   width: 50px;
-  background-color: #4A89DC;
+  background-color: $orange;
   margin-right: 10px;
 }
 
@@ -199,7 +200,7 @@ body {
 .footer:hover {
   background-color: lightgrey;
   .footer_text {
-    color: #4A89DC;
+    color: white;
   }
 }
 
@@ -209,6 +210,15 @@ body {
   display: inline-flex; /* make element size relative to content */
   align-items: center; /* vertical alignment of items */
   font-weight: bold;
+}
+
+.footer_right {
+  padding-right: 10px;
+  min-width: 70px;
+}
+.footer_left {
+  padding-left: 10px;
+  min-width: 70px;
 }
 
 /*

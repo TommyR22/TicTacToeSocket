@@ -4,26 +4,37 @@ import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class SharedService {
 
-  roomName: string;
+    roomName: string;
 
-  constructor() {
-  }
+    constructor() {
+    }
+    // Observer for STEP
+    private emitChangeSource = new Subject<any>();
+    changeEmittedStep$ = this.emitChangeSource.asObservable();
+    // Observer for LOADER
+    private emitChangeSourceLoader = new Subject<any>();
+    changeEmittedLoader$ = this.emitChangeSourceLoader.asObservable();
+    // Observer for MATRIX
+    private emitChangeSourceMatrix = new Subject<any>();
+    changeEmittedMatrix$ = this.emitChangeSourceMatrix.asObservable();
 
-  // Observable string sources
-  private emitChangeSource = new Subject<any>();
-  // Observable string streams
-  changeEmittedStep$ = this.emitChangeSource.asObservable();
+    emitChangeStep(step: number) {
+        this.emitChangeSource.next(step);
+    }
 
-  // Service message commands
-  emitChangeStep(step: number) {
-    this.emitChangeSource.next(step);
-  }
+    emitChangeLoader(loaderState: boolean) {
+        this.emitChangeSourceLoader.next(loaderState);
+    }
 
-  setRoomName(roomName: string) {
-    this.roomName = roomName;
-  }
+    emitChangeMatrix(matrix: any) {
+        this.emitChangeSourceMatrix.next(matrix);
+    }
 
-  getRoomName() {
-    return this.roomName;
-  }
+    setRoomName(roomName: string) {
+        this.roomName = roomName;
+    }
+
+    getRoomName() {
+        return this.roomName;
+    }
 }

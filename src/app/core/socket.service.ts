@@ -64,7 +64,7 @@ export class SocketService {
     socket.emit('game.start', {room: nameRoom});
   }
 
-  send(socket: any, nameRoom: string, message: string) {
+  send(socket: any, nameRoom: string, message: any) {
     socket.emit('send.message', {room: nameRoom, msg: message});
   }
 

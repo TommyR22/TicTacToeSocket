@@ -26,3 +26,7 @@ https://www.uplabs.com/posts/progress-bar-ui-pattern
 // TODO carousel
 
 // TODO line caricamento mossa
+
+
+#Future developments
+AI

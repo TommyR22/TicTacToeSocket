@@ -1,22 +1,27 @@
-
 <div class="container-fluid header">
 
-  <div class="row header__home">
-    <div class="col d-flex justify-content-between">
-      <div class="header_icon" (click)="exitRoom()" *ngIf="step===2">
-        <i id="icon_back" class="fas fa-angle-left fa-2x"></i>
-      </div>
+    <div class="row header__home">
+        <div class="col d-flex justify-content-between">
+            <div class="header_icon" (click)="exitRoom()" *ngIf="step===2">
+                <i id="icon_back" class="fas fa-angle-left fa-2x"></i>
+            </div>
+            <div class="header_icon" (click)="exitRoom()" *ngIf="step===3">
+                <i id="icon_back" class="fas fa-angle-left fa-2x"></i>
+            </div>
+        </div>
+        <div class="col text-center">
+            <div>
+                <img src="assets/images/logo.png" width="60">
+            </div>
+        </div>
+        <div class="col d-flex justify-content-end">
+            <div class="header_icon" (click)="updateRooms()" *ngIf="step===2">
+                <i id="icon_update" class="fas fa-sync-alt fa-2x"></i>
+            </div>
+            <div class="header_icon" *ngIf="step===3 && showLoader">
+                <i class="fas fa-spinner fa-pulse fa-2x"></i>
+            </div>
+        </div>
     </div>
-    <div class="col text-center">
-      <div>
-        <img src="assets/images/logo.png" width="60">
-      </div>
-    </div>
-    <div class="col d-flex justify-content-end">
-      <div class="header_icon" (click)="updateRooms()" *ngIf="step===2">
-        <i id="icon_update" class="fas fa-sync-alt fa-2x"></i>
-      </div>
-    </div>
-  </div>
 
 </div>

@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   avatarNumber: string;
   srcAvatar: string;
   showNotify = false;
-
+  showLoader = false;
+  footerLabel = 'Start Game!';
   notifyText: string;
   notifyTitle: string;
   notifyType: string;
@@ -156,10 +157,13 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     });
     this.socket.on('gameStart', (data) => {
       console.warn(data);
+      this.sharedService.emitChangeLoader(true);
+      this.footerLabel = 'Loading..';
       this.elRef.nativeElement.querySelector('.container-body_chat').insertAdjacentHTML('beforeend', '<span>' + data.message + '</span><br/>');
       this.gameService.setData(data.data);
       setTimeout(() => {
-        this.router.navigate(['/game']);
+          this.sharedService.emitChangeLoader(false);
+          this.router.navigate(['/game']);
       }, 2000);
     });
   }

@@ -2,19 +2,18 @@
 $input-background: rgba(57, 63, 84, 0.8);
 $input-text-inactive: #7881A1;
 $input-text-active: #BFD2FF;
+$red: #dc685a;
+$green: #1abc9c;
 
 $size-circle: 30px;
 $size-avatar: 75px;
 
-.prova {
-  border-top: 1px solid $input-text-inactive;
-}
 
 /*
 * Container avatar
  */
 .container-header {
-  margin-top: 10px;
+  margin-top: 20px;
   //border-bottom: 1px solid $input-text-inactive;
 }
 
@@ -49,6 +48,7 @@ $size-avatar: 75px;
   position: fixed;
   left: 0;
   bottom: 0;
+  background-color: $input-background;
 }
 
 .container-header__center {
@@ -70,3 +70,33 @@ $size-avatar: 75px;
 }
 
 
+.container-header__left__icon-seed {
+  position: absolute;
+  height: 30px;
+  left: 14px;
+}
+.container-header__right__icon-seed {
+  position: absolute;
+  height: 30px;
+  right: 14px;
+}
+
+
+.container-game {
+  margin-top: 50px;
+}
+
+
+/*
+* Progress bar
+ */
+#progress-container {
+  width: 100%;
+  height: 15px;
+}
+
+#progress {
+  height: 100%;
+  width: 0%;
+  background-color: $input-text-inactive;
+}
