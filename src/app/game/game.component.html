@@ -1,56 +1,59 @@
 <div class="container-fluid">
-    <div class="row container-header">
-        <div class="col d-flex flex-row container-header__left">
-            <div class="text-center" style="padding-left: 10px">
-                <img [src]="srcSeedUser" alt="seed image" class="container-header__left__icon-seed">
-                <img [src]="srcAvatarUser" alt="avatar user"
-                     class="rounded-circle container-header__left__avatar__image">
-                <span [style.color]="colorTextUser" class="container-header__left__avatar__text">{{user.name}}</span>
-                <span class="badge" style="display: block"
-                      [ngClass]="(turn_user==='wait')?'badge-warning':'badge-success'">{{turn_user}}</span>
-            </div>
-            <div class="align-self-center">
-                <span class="container-header__left__text">{{nvictory_user}}</span>
-            </div>
+  <div class="row container-header">
+    <div class="col d-flex flex-row container-header__left">
+      <div class="text-center" style="padding-left: 10px">
+        <img [src]="srcSeedUser" alt="seed image" class="container-header__left__icon-seed">
+        <img [src]="srcAvatarUser" alt="avatar user" class="rounded-circle container-header__left__avatar__image">
+        <span [style.color]="colorTextUser" class="container-header__left__avatar__text">{{user.name}}</span>
+        <span class="badge" style="display: block" [ngClass]="(turn_user==='wait')?'badge-warning':'badge-success'">{{turn_user}}</span>
+      </div>
+      <div class="align-self-center">
+        <span class="container-header__left__text">{{nvictory_user}}</span>
+      </div>
+    </div>
+    <div class="col container-header__center">
+      <!-- <span [style.color]="'red'">{{user2.name}}</span> -->
+      <div class="container-header__center__circle">
+        <div class="container-header__center__circle__text text-center">
+          VS
         </div>
-        <div class="col container-header__center">
-            <!-- <span [style.color]="'red'">{{user2.name}}</span> -->
-            <div class="container-header__center__circle">
-                <div class="container-header__center__circle__text text-center">
-                    VS
-                </div>
-            </div>
-        </div>
-        <div class="col d-flex flex-row container-header__right justify-content-end">
-            <div class="align-self-center">
-                <span class="container-header__right__text">{{nvictory_user2}}</span>
-            </div>
-            <div class="text-center" style="padding-right: 10px">
-                <img [src]="srcSeedUser2" alt="seed image" class="container-header__right__icon-seed">
-                <img [src]="srcAvatarUser2" alt="avatar user 2"
-                     class="rounded-circle container-header__left__avatar__image">
-                <span [style.color]="colorTextUser2" class="container-header__left__avatar__text">{{user2.name}}</span>
-                <span class="badge" style="display: block"
-                      [ngClass]="(turn_user2==='wait')?'badge-warning':'badge-success'">{{turn_user2}}</span>
-            </div>
-        </div>
+      </div>
+    </div>
+    <div class="col d-flex flex-row container-header__right justify-content-end">
+      <div class="align-self-center">
+        <span class="container-header__right__text">{{nvictory_user2}}</span>
+      </div>
+      <div class="text-center" style="padding-right: 10px">
+        <img [src]="srcSeedUser2" alt="seed image" class="container-header__right__icon-seed">
+        <img [src]="srcAvatarUser2" alt="avatar user 2" class="rounded-circle container-header__left__avatar__image">
+        <span [style.color]="colorTextUser2" class="container-header__left__avatar__text">{{user2.name}}</span>
+        <span class="badge" style="display: block" [ngClass]="(turn_user2==='wait')?'badge-warning':'badge-success'">{{turn_user2}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-game">
+    <app-table-game [seed]="seed" [isEnable]="myTurn" (cubeSelected)="cubeSelected($event)"></app-table-game>
+  </div>
+
+
+  <div class="fixed-bottom footer">
+    <!--<div class="container-fluid" style="padding-bottom: 10px;">-->
+    <!--<div class="container-center">-->
+    <!--&lt;!&ndash;<app-table-game></app-table-game>&ndash;&gt;-->
+    <!--</div>-->
+    <!--</div>-->
+    <div class="progress-container">
+      <div class="progress" [style.width.%]="progressWidth"></div>
     </div>
 
-    <div class="container-game">
-        <app-table-game [seed]="seed" [isEnable]="myTurn" (cubeSelected)="cubeSelected($event)"></app-table-game>
-    </div>
+  </div>
 
+</div>
 
-    <div class="fixed-bottom footer">
-        <!--<div class="container-fluid" style="padding-bottom: 10px;">-->
-        <!--<div class="container-center">-->
-        <!--&lt;!&ndash;<app-table-game></app-table-game>&ndash;&gt;-->
-        <!--</div>-->
-        <!--</div>-->
-        <div id="progress-container">
-            <div id="progress" [style.width.%]="progressWidth"></div>
-        </div>
-
-    </div>
-
+<div class="overlay" *ngIf="showResult">
+  <div class="body-overlay">
+    {{messageResult}}<br>
+    <button type="button" class="btn btn-light" (click)="rematch()">Rematch</button>
+  </div>
 </div>

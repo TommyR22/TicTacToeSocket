@@ -230,4 +230,12 @@ export class TableGameComponent implements OnInit {
         }
     }
 
+
+    reset() {
+        for (let _i = 0; _i < 8; _i++) {
+            this.renderer.removeClass(this.cube1, `cube__disabled__x`);
+            this.renderer.removeClass(this.cube1, `cube__disabled__o`);
+        }
+    }
+
 }

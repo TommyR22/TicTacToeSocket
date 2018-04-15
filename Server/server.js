@@ -203,11 +203,15 @@ io.on('connection', function (socket) {
         }else {
             userTurn = clients[0];
         }
+        if (data.msg.rematch === 'enable') {
+            data.msg.matrix = new Array(9).fill(0);
+        }
         // send message to all client in the room
         io.in(data.room).emit('send.message.from', {
             matrix: data.msg.matrix,
             turn: userTurn,
-            winner: data.msg.winner
+            winner: data.msg.winner,
+            rematch: data.msg.rematch
         });
     });
 

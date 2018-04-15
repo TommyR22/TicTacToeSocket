@@ -26,7 +26,7 @@ https://www.uplabs.com/posts/progress-bar-ui-pattern
 // TODO carousel
 
 // TODO line caricamento mossa
-
+// TODO check name users!! usare diversi oppure socket id
 
 #Future developments
 AI
