@@ -49,6 +49,7 @@ $size-avatar: 75px;
   left: 0;
   bottom: 0;
   background-color: $input-background;
+  z-index: 100;
 }
 
 .container-header__center {
@@ -87,6 +88,12 @@ $size-avatar: 75px;
 }
 
 
+.container-header__badge {
+  display: block;
+  max-width: 60px;
+  margin: 0 auto;
+}
+
 /*
 * Progress bar
  */
@@ -103,7 +110,7 @@ $size-avatar: 75px;
 
 
 /*
-*
+* OVERLAY END GAME
 */
 
 .body-overlay {
@@ -115,7 +122,8 @@ $size-avatar: 75px;
     height: 100%;
     margin: 0 auto;
     color:white;
-  }
+    text-align: center;
+}
   
   .overlay {
     position: fixed;
@@ -123,7 +131,6 @@ $size-avatar: 75px;
     left: 0!important;
     width: 100%;
     height: 100%;
-    text-align: center;
     vertical-align: middle;
     background-color: $input-background;
     line-height: 1;
@@ -138,7 +145,57 @@ $size-avatar: 75px;
     -ms-user-select: none;
     user-select: none;
     will-change: opacity;
-    z-index: 1000;
+    z-index: 200;
   }
 
+
+  .overlay__exit {
+    color: white;
+    cursor: pointer;
+    opacity: 0.7;
+    float: right;
+    margin: 20px;
+  }
+  .overlay__exit:hover {
+    opacity: 1;
+  }
+
+  .body-overlay__text {
+    font-size: large;
+  }
+
+/*
+* Footer
+--------------------- */
+
+.footer_endgame {
+  z-index: 300;
+  cursor: pointer;
+  background-color: white;
+}
+
+.footer_endgame:hover {
+  background-color: lightgrey;
+  .footer_text {
+    color: white;
+    text-shadow: 1px 0px 5px #000;
+  }
+}
+
+.footer_endgame_text {
+  min-height: 60px;
+  color: $input-background;
+  display: inline-flex; /* make element size relative to content */
+  align-items: center; /* vertical alignment of items */
+  font-weight: bold;
+}
+
+.footer_endgame_right {
+  padding-right: 10px;
+  min-width: 70px;
+}
+.footer_endgame_left {
+  padding-left: 10px;
+  min-width: 70px;
+}
   

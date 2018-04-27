@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from './../environments/environment.prod';
 import {SocketService} from './core/socket.service';
 import {SharedService} from './core/shared.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
   roomName: string;
 
   constructor(private socketService: SocketService,
-              private sharedService: SharedService) {
+              private sharedService: SharedService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -32,15 +34,14 @@ export class AppComponent implements OnInit {
   }
 
   exitRoom() {
-    if (this.step === 2) {
-      this.step -= 1;
-      this.sharedService.emitChangeStep(this.step);
-    }else if (this.step === 3) {
+    if (this.step === 1) {
+      this.sharedService.emitChangeStep(0);
+    }else if (this.step === 2) {
       this.socket = this.socketService.getSocket();
       this.roomName = this.sharedService.getRoomName();
       this.socketService.exitRoom(this.socket, this.roomName);
-      this.step -= 1;
-      this.sharedService.emitChangeStep(this.step);
+      this.sharedService.emitChangeStep(1);
+      this.router.navigate(['/home']);
     }
   }
 

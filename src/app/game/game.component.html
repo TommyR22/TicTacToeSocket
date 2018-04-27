@@ -5,7 +5,7 @@
         <img [src]="srcSeedUser" alt="seed image" class="container-header__left__icon-seed">
         <img [src]="srcAvatarUser" alt="avatar user" class="rounded-circle container-header__left__avatar__image">
         <span [style.color]="colorTextUser" class="container-header__left__avatar__text">{{user.name}}</span>
-        <span class="badge" style="display: block" [ngClass]="(turn_user==='wait')?'badge-warning':'badge-success'">{{turn_user}}</span>
+        <span class="badge container-header__badge" [ngClass]="(turn_user==='wait')?'badge-warning':'badge-success'">{{turn_user}}</span>
       </div>
       <div class="align-self-center">
         <span class="container-header__left__text">{{nvictory_user}}</span>
@@ -27,7 +27,7 @@
         <img [src]="srcSeedUser2" alt="seed image" class="container-header__right__icon-seed">
         <img [src]="srcAvatarUser2" alt="avatar user 2" class="rounded-circle container-header__left__avatar__image">
         <span [style.color]="colorTextUser2" class="container-header__left__avatar__text">{{user2.name}}</span>
-        <span class="badge" style="display: block" [ngClass]="(turn_user2==='wait')?'badge-warning':'badge-success'">{{turn_user2}}</span>
+        <span class="badge container-header__badge" [ngClass]="(turn_user2==='wait')?'badge-warning':'badge-success'">{{turn_user2}}</span>
       </div>
     </div>
   </div>
@@ -52,8 +52,25 @@
 </div>
 
 <div class="overlay" *ngIf="showResult">
+  <i class="fas fa-times fa-2x overlay__exit"></i>
   <div class="body-overlay">
-    {{messageResult}}<br>
-    <button type="button" class="btn btn-light" (click)="rematch()">Rematch</button>
+    <p class="body-overlay__text">{{messageResult}}</p>
+    <div class="fixed-bottom footer_endgame" (click)="rematch()">
+      <div class="row">
+        <div class="col text-center">
+          <div class="d-flex justify-content-between">
+            <div>
+              <div class="footer_endgame_left">
+              </div>
+            </div>
+            <div class="footer_endgame_text">
+              Rematch
+            </div>
+            <div class="footer_endgame_right">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

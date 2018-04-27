@@ -48,9 +48,6 @@ io.on('connection', function (socket) {
     var room;  // nome stanza dove si trova il socket
     var clients = []; // lista di User
 
-    // init matrix game tic tac toe
-    matrix = new Array(9).fill(0);
-
     // called before DISCONNECT event
     socket.on('disconnecting', function () {
         console.log('SERVER -> User: ' + client_list[socket.id].name + ' is disconnetting!');
@@ -123,14 +120,15 @@ io.on('connection', function (socket) {
     socket.on('leave', function (data) {
         socket.leave(data.room, function () {
             clientsInRoom = [];
-            console.log('SERVER ->' + 'socket: ' + socket.id + ' left the room: ' + data.room);
-            if (io.sockets.adapter.rooms[data.room].sockets) {  // if the last user on the room and exit from it
+            console.log('SERVER ->' + 'socket: ' + socket.id + ' left the room: ' + data.room + ' info: ' + io.sockets.adapter.rooms[data.room]);
+            if (io.sockets.adapter.rooms[data.room] !== undefined) {
                 for (var socketID in io.sockets.adapter.rooms[data.room].sockets) {
                     clientsInRoom.push(client_list[socketID]);
                 }
                 io.to(data.room).emit('notifyPlayerLeave', {oldClient: client_list[socket.id], clients: clientsInRoom}); // broadcast to all clients in the room
             } else {
                 // nothing
+                console.log('No clients in room!');
             }
         });
     });
@@ -168,13 +166,14 @@ io.on('connection', function (socket) {
     socket.on('game.start', function (data) {
         console.log('start game: ', data.room);
         // send message to all client in room
-        // TODO bisogna inserire qui la scelta di chi far iniziare per primo e poi quali carte.
+        // TODO bisogna inserire qui la scelta di chi far iniziare per primo.
         // scegliere tra 0 e 1
         clients = [];   // TODO inserire come globale e togliere ciclo for da send.message
         for (var socketID in io.sockets.adapter.rooms[data.room].sockets) {
             clients.push(client_list[socketID]);
         }
-
+        // init matrix game tic tac toe
+        matrix = new Array(9).fill(0);
         // send to ALL clients, Seed 1 = X; Seed 2 = O
         io.in(data.room).emit('gameStart', {
             message: 'Game is starting...!',
@@ -189,7 +188,7 @@ io.on('connection', function (socket) {
     });
 
     /**
-     * manda i comandi al server e all'altro client
+     * game messages beetween clients
      */
     socket.on('send.message', function (data) {
         console.log('sendMessage', data);

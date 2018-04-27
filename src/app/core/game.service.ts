@@ -9,16 +9,16 @@ export class GameService {
 
   constructor() {}
 
-  setData(dati: any){
+  setData(dati: any) {
     this.data = dati;
   }
-  getData(){
+  getData() {
     return this.data;
   }
-  setUser(user: User){
+  setUser(user: User) {
     this.user = user;
   }
-  getUser(){
+  getUser() {
     return this.user;
   }
   

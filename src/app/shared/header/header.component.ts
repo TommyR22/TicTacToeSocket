@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
     @Output() update: EventEmitter<string>;
     @Output() exit: EventEmitter<string>;
 
-    step = 1;
+    step = 0;
     showLoader = false;
 
     constructor(private elRef: ElementRef, private renderer: Renderer2, private sharedService: SharedService) {

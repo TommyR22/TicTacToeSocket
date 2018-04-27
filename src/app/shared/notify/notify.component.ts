@@ -26,13 +26,13 @@ import {
 export class NotifyComponent implements OnInit, OnChanges {
 
   @Input() type?: string;
-  @Input() title: string;
+  @Input() title?: string;
   @Input() text: string;
   @Input() showNotify: boolean;
   @Output() eventCloseNotify: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  private iconColor: string;
-  private iconText: string;
+  iconColor: string;
+  iconText: string;
 
   constructor() { }
 

@@ -1,14 +1,19 @@
-<div class="container-notify" *ngIf="showNotify" [@fadeInOut]>
-  <div class="container-notify__body">
-    <h3 class="container-notify__body__title">{{title}}
-      <span (click)="removeNotify()"><i class="fas fa-times container-notify__close" ></i></span>
-    </h3>
-    <p class="container-notify__body_text">{{text}}</p>
-    <div class="container-notify__footer">
-      <div class="container-notify__footer__icon" [style.background]="iconColor">
-        <i class="fas container-notify__footer__icon_text" [ngClass]="iconText"></i>
-        <!--fa-exclamation-->
-      </div>
+<div class="row justify-content-center">
+  <div class="container-notify" *ngIf="showNotify" [@fadeInOut]>
+    <div class="container-notify__body">
+      <span class="container-notify__body__title">
+        <i class="fas container-notify__body__icon" [ngClass]="iconText" [style.color]="iconColor"></i>
+        {{title}}
+        <span (click)="removeNotify()"><i class="fas fa-times container-notify__close" ></i></span>
+      </span>
+      <p class="container-notify__body_text" *ngIf="text">{{text}}</p>
+      <!-- circle below rectangle -->
+      <!--<div class="container-notify__footer">-->
+        <!--<div class="container-notify__footer__icon" [style.background]="iconColor">-->
+          <!--<i class="fas container-notify__footer__icon_text" [ngClass]="iconText"></i>-->
+          <!--&lt;!&ndash;fa-exclamation&ndash;&gt;-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
   </div>
 </div>

@@ -1,18 +1,18 @@
 
 <div class="tic-tac-toe">
   <div class="d-flex justify-content-center row1">
-    <div class="cube" id="cube1" (click)="cube1Disabled ? $event.stopPropagation() : clickCube(1, seed); cube1Disabled ? false : null"></div>
-    <div class="cube" id="cube2" (click)="cube2Disabled ? $event.stopPropagation() : clickCube(2, seed); cube2Disabled ? false : null"></div>
-    <div class="cube" id="cube3" (click)="cube3Disabled ? $event.stopPropagation() : clickCube(3, seed); cube3Disabled ? false : null"></div>
+    <div class="cube" id="cube1" (click)="clickCube(1, seed)"></div>
+    <div class="cube" id="cube2" (click)="clickCube(2, seed)"></div>
+    <div class="cube" id="cube3" (click)="clickCube(3, seed)"></div>
   </div>
   <div class="d-flex justify-content-center row2">
-    <div class="cube" id="cube4" (click)="cube4Disabled ? $event.stopPropagation() : clickCube(4, seed); cube4Disabled ? false : null"></div>
-    <div class="cube" id="cube5" (click)="cube5Disabled ? $event.stopPropagation() : clickCube(5, seed); cube5Disabled ? false : null"></div>
-    <div class="cube" id="cube6" (click)="cube6Disabled ? $event.stopPropagation() : clickCube(6, seed); cube6Disabled ? false : null"></div>
+    <div class="cube" id="cube4" (click)="clickCube(4, seed)"></div>
+    <div class="cube" id="cube5" (click)="clickCube(5, seed)"></div>
+    <div class="cube" id="cube6" (click)="clickCube(6, seed)"></div>
   </div>
   <div class="d-flex justify-content-center row3">
-    <div class="cube" id="cube7" (click)="cube7Disabled ? $event.stopPropagation() : clickCube(7, seed); cube7Disabled ? false : null"></div>
-    <div class="cube" id="cube8" (click)="cube8Disabled ? $event.stopPropagation() : clickCube(8, seed); cube8Disabled ? false : null"></div>
-    <div class="cube" id="cube9" (click)="cube9Disabled ? $event.stopPropagation() : clickCube(9, seed); cube9Disabled ? false : null"></div>
+    <div class="cube" id="cube7" (click)="clickCube(7, seed)"></div>
+    <div class="cube" id="cube8" (click)="clickCube(8, seed)"></div>
+    <div class="cube" id="cube9" (click)="clickCube(9, seed)"></div>
   </div>
 </div>

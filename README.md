@@ -30,3 +30,5 @@ https://www.uplabs.com/posts/progress-bar-ui-pattern
 
 #Future developments
 AI
+
+gameService che serve??
