@@ -1,6 +1,6 @@
 import {GameService} from './../core/game.service';
 import {SocketService} from '../core/socket.service';
-import {Component, OnInit, Renderer2, ElementRef, ViewChild, AfterViewChecked} from '@angular/core';
+import {Component, OnInit, Renderer2, ElementRef} from '@angular/core';
 import * as io from 'socket.io-client';
 import {environment} from '../../environments/environment.prod';
 import * as moment from 'moment';
@@ -13,7 +13,7 @@ import {SharedService} from '../core/shared.service';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, AfterViewChecked {
+export class LoginComponent implements OnInit {
     imageExtension = 'svg';
     user: User;
     title = 'app';
@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit, AfterViewChecked {
     avatarNumber: string;
     srcAvatar: string;
     showNotify = false;
-    showLoader = false;
     notifyText: string;
     notifyTitle: string;
     notifyType: string;
@@ -32,7 +31,6 @@ export class LoginComponent implements OnInit, AfterViewChecked {
     private url = environment.serverUrl;
     private socket;
 
-    @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
     constructor(private socketService: SocketService,
                 private gameService: GameService,
@@ -43,17 +41,6 @@ export class LoginComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit() {
-    }
-
-    ngAfterViewChecked() {
-        this.scrollToBottom();
-    }
-
-    scrollToBottom(): void {
-        try {
-            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-        } catch (err) {
-        }
     }
 
     /**
@@ -108,7 +95,7 @@ export class LoginComponent implements OnInit, AfterViewChecked {
         return moment(timestamp).fromNow();
     }
 
-    onSubmit(step: number, form: any) {
+    onSubmit(form: any) {
         // console.log(form.value);
         console.log('initSocket');
         this.initSocket();

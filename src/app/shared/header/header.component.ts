@@ -9,7 +9,7 @@ import {SharedService} from '../../core/shared.service';
 export class HeaderComponent implements OnInit {
 
     @Output() update: EventEmitter<string>;
-    @Output() exit: EventEmitter<string>;
+    @Output() exit: EventEmitter<number>;
 
     step = 0;
     showLoader = false;
@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
     }
 
     exitRoom() {
-        this.exit.emit();
+        this.exit.emit(this.step);
     }
 
 }

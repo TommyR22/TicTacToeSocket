@@ -6,10 +6,10 @@
                 <div class="col profile__avatar">
                     <!-- <img [src]="srcAvatar" alt="avatar" class="rounded-circle container-header__col-avatar__image"> -->
                     <img class="profile__avatar__image" [src]="srcAvatar" alt="Avatar user">
-                    <span class="profile__avatar__name badge badge-light">{{user.name}}</span>
+                    <span class="profile__avatar__name badge badge-light">{{user?.name}}</span>
                 </div>
                 <div class="col profile__right text-right">
-                    <span class="badge badge-light">ROOMS • {{rooms.length}}</span>
+                    <span class="badge badge-light">ROOMS • {{rooms?.length}}</span>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
-                <form #formApp="ngForm" class="d-none d-sm-block" (ngSubmit)="formApp.valid && onSubmit(step, formApp)"
+                <form #formApp="ngForm" class="d-none d-sm-block" (ngSubmit)="formApp.valid && onSubmit(formApp)"
                       novalidate autocomplete="off" style="margin-bottom: 10px;">
                     <div class="container-body__input">
                         <input type="text" [(ngModel)]="roomName" #room="ngModel" name="room"
@@ -69,8 +69,8 @@
 
 
     <div class="fixed-bottom d-sm-none">
-        <div class="row">
-            <div class="col text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
                 <form #formApp="ngForm" (ngSubmit)="formApp.valid && onSubmit(step, formApp)" novalidate
                       autocomplete="off">
                     <div class="container-body__input">

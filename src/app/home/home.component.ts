@@ -1,11 +1,10 @@
 import {GameService} from './../core/game.service';
 import {SocketService} from '../core/socket.service';
 import {Component, OnInit, Renderer2, ElementRef, ViewChild, AfterViewChecked} from '@angular/core';
-import * as io from 'socket.io-client';
 import {environment} from '../../environments/environment.prod';
 import * as moment from 'moment';
 import {User} from '../core/models/user.model';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {SharedService} from '../core/shared.service';
 
 @Component({
@@ -20,7 +19,6 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     roomName: string;
     rooms = [];
     clients = [];
-    avatarNumber: string;
     srcAvatar: string;
     showNotify = false;
     showLoader = false;
@@ -43,22 +41,26 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit() {
-        this.socket = this.socketService.getSocket();
-        this.user = this.sharedService.getUser();
-        this.srcAvatar = `../assets/images/avatars/${this.user.avatar}.${this.imageExtension}`;
+        try {
+            this.socket = this.socketService.getSocket();
+            this.user = this.sharedService.getUser();
+            this.srcAvatar = `../assets/images/avatars/${this.user.avatar}.${this.imageExtension}`;
 
-        this.socket.on('rooms.update_clients', (data) => {
-            if (data.length === 0) {
-                this.rooms = [];
-                console.log('No rooms available!');
-            } else {
-                console.log(JSON.stringify(data));
-                this.rooms = data;
-                console.log('New Rooms available - n.', this.rooms.length);
-            }
-        });
+            this.socket.on('rooms.update_clients', (data) => {
+                if (data.length === 0) {
+                    this.rooms = [];
+                    console.log('No rooms available!');
+                } else {
+                    console.log(JSON.stringify(data));
+                    this.rooms = data;
+                    console.log('New Rooms available - n.', this.rooms.length);
+                }
+            });
 
-        this.updateRooms();
+            this.updateRooms();
+        } catch (e) {
+            this.router.navigate(['/login']);
+        }
     }
 
     ngAfterViewChecked() {
@@ -77,8 +79,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
         return moment(timestamp).fromNow();
     }
 
-    onSubmit(step: number, form: any) {
-
+    onSubmit(form: any) {
         console.log('createRoom');
         let found = false;
         for (let room of this.rooms) {

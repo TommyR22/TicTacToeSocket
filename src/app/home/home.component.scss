@@ -55,38 +55,6 @@ $green: #1abc9c;
   margin-top: $margin-top-from-header;
 }
 
-@keyframes fade_button_form {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.container-body__input__button--hide {
-  opacity: 0;
-}
-
-.container-body__input__button {
-  animation-name: fade_button_form;
-  animation-duration: .5s;
-}
-
-// reset
-.container-body__input input {
-  border-style: none;
-  background: transparent;
-  outline: none;
-}
-
-.container-body__input button {
-  padding: 0;
-  background: none;
-  border: none;
-  outline: none;
-}
-
 /**
 * Input
  */
@@ -147,6 +115,38 @@ $green: #1abc9c;
   &:hover {
     color: $input-text-active;
   }
+}
+
+@keyframes fade_button_form {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.container-body__input__button--hide {
+  opacity: 0;
+}
+
+.container-body__input__button {
+  animation-name: fade_button_form;
+  animation-duration: .5s;
+}
+
+// reset
+.container-body__input input {
+  border-style: none;
+  background: transparent;
+  outline: none;
+}
+
+.container-body__input button {
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
 }
 
 

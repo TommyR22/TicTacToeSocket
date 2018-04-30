@@ -93,17 +93,18 @@ $green: #1abc9c;
 --------------------- */
 
 .footer {
-  cursor: pointer;
-  background-color: white;
+  margin-bottom: 60px;
+  //cursor: pointer;
+  //background-color: white;
 }
 
-.footer:hover {
-  background-color: lightgrey;
-  .footer_text {
-    color: white;
-    text-shadow: 1px 0px 5px #000;
-  }
-}
+//.footer:hover {
+//  background-color: lightgrey;
+//  .footer_text {
+//    color: white;
+//    text-shadow: 1px 0px 5px #000;
+//  }
+//}
 
 .footer_text {
   min-height: 60px;
@@ -120,5 +121,99 @@ $green: #1abc9c;
 .footer_left {
   padding-left: 10px;
   min-width: 70px;
+}
+
+/**
+* Input
+ */
+
+@keyframes gradient {
+  0% {
+    background-position: 0 0
+  }
+  100% {
+    background-position: 100% 0
+  }
+}
+
+.container-body__input {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: $heightInput;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 0 10px 0 10px;
+  background: $input-background;
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 999;
+    height: $heightLine;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-position: 0% 0%;
+    background: linear-gradient(to right, #B294FF, #57E6E6, #FEFFB8, #57E6E6, #B294FF, #57E6E6);
+    background-size: 500% auto;
+    animation: gradient 3s linear infinite;
+  }
+}
+
+.container-body__input input {
+  flex-grow: 1;
+  color: $input-text-active;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  &::-webkit-input-placeholder {
+    color: $input-text-inactive;
+  }
+}
+
+.container-body__input button {
+  color: $input-text-inactive;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  vertical-align: middle;
+  transition: color .25s;
+  &:hover {
+    color: $input-text-active;
+  }
+}
+
+@keyframes fade_button_form {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.container-body__input__button--hide {
+  opacity: 0;
+}
+
+.container-body__input__button {
+  animation-name: fade_button_form;
+  animation-duration: .5s;
+}
+
+// reset
+.container-body__input input {
+  border-style: none;
+  background: transparent;
+  outline: none;
+}
+
+.container-body__input button {
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
 }
 

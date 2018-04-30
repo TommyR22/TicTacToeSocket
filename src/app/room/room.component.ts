@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
+import {AfterViewChecked, Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {User} from '../core/models/user.model';
 import {SharedService} from '../core/shared.service';
 import {SocketService} from '../core/socket.service';
@@ -10,13 +10,16 @@ import {Router} from '@angular/router';
     templateUrl: './room.component.html',
     styleUrls: ['./room.component.scss']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit, AfterViewChecked {
     srcAvatar: string;
     imageExtension = 'svg';
     user: User;
     clients = [];
     socket: any;
     footerLabel: string;
+    message: string;
+
+    @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
     constructor(private sharedService: SharedService,
                 private elRef: ElementRef,
@@ -105,10 +108,33 @@ export class RoomComponent implements OnInit {
                 }, 2000);
             });
 
+            this.socket.on('gameMessage', (data) => {
+                console.warn(data);
+                this.elRef.nativeElement.querySelector('.container-body_chat').insertAdjacentHTML('beforeend', '<strong>' + data.user + '</strong><span>: ' + data.message + '</span><br/>');
+            });
+
             this.updateClients();
         } catch (e) {
             this.router.navigate(['/home']);
         }
+    }
+
+    ngAfterViewChecked() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom(): void {
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch (err) {
+            console.log('Scroll error!');
+        }
+    }
+
+    onSubmit(form: any) {
+        // console.log(form.value);
+        this.socketService.messageGame(this.socket, this.sharedService.getRoomName(), this.message, this.user.name);
+        this.message = '';
     }
 
     updateClients() {

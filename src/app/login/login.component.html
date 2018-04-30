@@ -5,7 +5,7 @@
       Select Your Avatar
     </div>
     <div class="row no-gutters container-body__row1 justify-content-md-center">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <div>
           <!-- Carousel Avatar -->
           <app-carousel (avatarSelected)="setAvatar($event)"></app-carousel>
@@ -16,7 +16,7 @@
       <div class="col-md-3">
       </div>
       <div class="col-md-6">
-        <form #formApp="ngForm" class="d-none d-sm-block" (ngSubmit)="formApp.valid && onSubmit(step, formApp)"
+        <form #formApp="ngForm" class="d-none d-sm-block" (ngSubmit)="formApp.valid && onSubmit(formApp)"
               novalidate autocomplete="off" style="margin-bottom: 10px;">
           <div class="container-body__input">
             <input type="text" [(ngModel)]="username" #name="ngModel" name="username" placeholder="Name"
@@ -37,7 +37,7 @@
   <div class="fixed-bottom d-sm-none">
     <div class="row">
       <div class="col text-center">
-        <form #formApp="ngForm" (ngSubmit)="formApp.valid && onSubmit(step, formApp)" novalidate
+        <form #formApp="ngForm" (ngSubmit)="formApp.valid && onSubmit(formApp)" novalidate
               autocomplete="off">
           <div class="container-body__input">
             <input type="text" [(ngModel)]="username" #name="ngModel" name="username" placeholder="Name"

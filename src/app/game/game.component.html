@@ -52,7 +52,7 @@
 </div>
 
 <div class="overlay" *ngIf="showResult">
-  <i class="fas fa-times fa-2x overlay__exit"></i>
+  <i class="fas fa-times fa-2x overlay__exit" (click)="exit()"></i>
   <div class="body-overlay">
     <p class="body-overlay__text">{{messageResult}}</p>
     <div class="fixed-bottom footer_endgame" (click)="rematch()">

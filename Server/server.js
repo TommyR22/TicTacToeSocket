@@ -188,6 +188,19 @@ io.on('connection', function (socket) {
     });
 
     /**
+     * notifica l'inizio del gioco a tutti i clients nella stanza
+     */
+    socket.on('game.message', function (data) {
+        console.log('start message: ', data.room);
+        // send message to all client in room
+        clients = [];   // TODO inserire come globale e togliere ciclo for da send.message
+        for (var socketID in io.sockets.adapter.rooms[data.room].sockets) {
+            clients.push(client_list[socketID]);
+        }
+        io.in(data.room).emit('gameMessage', data);
+    });
+
+    /**
      * game messages beetween clients
      */
     socket.on('send.message', function (data) {

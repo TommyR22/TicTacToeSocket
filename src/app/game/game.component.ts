@@ -78,7 +78,7 @@ export class GameComponent implements OnInit {
 
             this.matrix = this.data.matrix;
             this.userCurrentTurn = this.data.turn;
-            if (this.data.turn.name === this.user.name) {
+            if (this.data.turn.id === this.user.id) {
                 this.myTurn = true;
                 this.turn_user2 = 'wait';
                 this.turn_user = 'play';
@@ -255,6 +255,10 @@ export class GameComponent implements OnInit {
             winner: '',
             rematch: 'enable'
         });
+    }
+
+    exit() {
+
     }
 
 

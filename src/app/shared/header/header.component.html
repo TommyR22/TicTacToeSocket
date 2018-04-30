@@ -2,7 +2,7 @@
 
     <div class="row header__home">
         <div class="col d-flex justify-content-between">
-            <div class="header_icon" (click)="exitRoom()" *ngIf="step>=1">
+            <div class="header_icon" (click)="exitRoom()" *ngIf="step === 1 || step === 2">
                 <i id="icon_back" class="fas fa-angle-left fa-2x"></i>
             </div>
         </div>
